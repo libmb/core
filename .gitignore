@@ -1,0 +1,6 @@
+/.cache
+/libmb_core.a
+/compile_commands.json
+/*.tmp
+/out
+/env.mk

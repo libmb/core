@@ -1,0 +1,19 @@
+[
+  {
+    "directory": "[[WORKSPACE]]",
+    "file": "src/lib.c",
+    "output": "/dev/null",
+    "arguments": [
+      "clang",
+      "-xc",
+      "src/lib.c",
+      "-o",
+      "/dev/null",
+      "-I",
+      "include",
+      "-I",
+      "external_include",
+      "-c"
+    ]
+  }
+]
