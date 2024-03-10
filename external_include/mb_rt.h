@@ -6,11 +6,12 @@
 /*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:53:41 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/07 23:01:26 by jmaing           ###   ########.fr       */
+/*   Updated: 2024/03/10 22:31:38 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MB_RT_H
+# define MB_RT_H
 
 # include "mb_rt_type.h"
 

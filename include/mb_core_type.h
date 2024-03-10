@@ -6,13 +6,13 @@
 /*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:34:31 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/09 01:17:21 by jmaing           ###   ########.fr       */
+/*   Updated: 2024/03/10 23:35:10 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MB_CORE_TYPE_H
+# define MB_CORE_TYPE_H
 
-# include <stdint.h>
 # include <stdbool.h>
 
 # include "mb_rt_type.h"
@@ -96,30 +96,6 @@ typedef struct s_mb_real_type
 	t_mb_real_v_from_buffer	from_buffer;
 }	t_mb_real_type;
 
-typedef struct s_mb_color
-{
-	uint8_t	r;
-	uint8_t	g;
-	uint8_t	b;
-}	t_mb_color;
-
-typedef struct s_mb_color_palette_context	t_mb_color_palette_context;
-
-typedef t_err								(*t_mb_color_palette_v_get)(
-												t_mb_color_palette_context
-												*context,
-												uint_fast64_t iteration_count,
-												t_mb_color *out);
-
-typedef t_err								(*t_mb_color_palette_v_delete)(
-												t_mb_color_palette_context
-												*self);
-
-typedef struct s_mb_color_palette
-{
-	t_mb_color_palette_context	*context;
-	t_mb_color_palette_v_delete	delete;
-	t_mb_color_palette_v_get	get;
-}	t_mb_color_palette;
+typedef struct s_mb							t_mb;
 
 #endif
