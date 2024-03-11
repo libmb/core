@@ -6,15 +6,16 @@
 /*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:25:04 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/10 23:45:02 by jmaing           ###   ########.fr       */
+/*   Updated: 2024/03/11 23:43:12 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MB_CORE_INTERNAL_H
 # define MB_CORE_INTERNAL_H
 
-# include "mb_rt_type.h"
 # include "mb_core_type.h"
+
+# include <stddef.h>
 
 struct s_mb
 {

@@ -19,7 +19,7 @@ all: \$(NAME)
 	\$(AR) -c -r -s \$@.tmp \$^
 	mv \$@.tmp \$@
 
-CPPFLAGS = -I ../../include -I ../../external_include -D NDEBUG
+CPPFLAGS = -I ../../include -D NDEBUG
 
 " "$(sh build/script/get-source.sh | sed s/\\.c/.o/ | xargs)"
 

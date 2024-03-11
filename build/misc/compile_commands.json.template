@@ -11,8 +11,6 @@
       "/dev/null",
       "-I",
       "include",
-      "-I",
-      "external_include",
       "-c"
     ]
   }

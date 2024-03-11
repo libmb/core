@@ -6,12 +6,14 @@
 /*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:36:03 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/10 23:37:31 by jmaing           ###   ########.fr       */
+/*   Updated: 2024/03/11 23:50:20 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MB_CORE_H
 # define MB_CORE_H
+
+# include <stddef.h>
 
 # include "mb_core_type.h"
 
