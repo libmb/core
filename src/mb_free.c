@@ -14,7 +14,7 @@
 
 #include <stdlib.h>
 
-void	mb_delete(t_mb *self)
+void	mb_free(t_mb *self)
 {
 	free(self);
 }

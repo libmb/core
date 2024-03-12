@@ -19,7 +19,7 @@ typedef bool				t_err;
 
 typedef struct s_mb_real	t_mb_real;
 
-typedef void				(*t_mb_real_v_delete)(
+typedef void				(*t_mb_real_v_free)(
 								void *context,
 								t_mb_real *self);
 
@@ -51,13 +51,13 @@ typedef t_err				(*t_mb_real_v_check)(
 typedef struct s_mb_real_type
 {
 	void				*context;
-	t_mb_real_v_delete	delete;
+	t_mb_real_v_free	free;
 	t_mb_real_v_clone	clone;
 	t_mb_real_v_assign	assign;
 	t_mb_real_v_binary	add;
 	t_mb_real_v_binary	multiply;
 	t_mb_real_v_negate	negate;
-	t_mb_real_v_check	is_greater_than_or_equal_to_two;
+	t_mb_real_v_check	is_greater_than_or_equal_to_four;
 	t_mb_real			*zero;
 	t_mb_real			*one;
 }	t_mb_real_type;

@@ -27,6 +27,6 @@ t_err	mb(
 			t_mb_real *real,
 			t_mb_real *imaginary,
 			size_t *out);
-void	mb_delete(t_mb *self);
+void	mb_free(t_mb *self);
 
 #endif
