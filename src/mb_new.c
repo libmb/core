@@ -6,7 +6,7 @@
 /*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:47:22 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/10 23:37:52 by jmaing           ###   ########.fr       */
+/*   Updated: 2024/03/13 23:51:09 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,40 @@
 
 #include "mb_core_internal.h"
 
-static t_err	cleanup(t_mb *resource, int phase)
+static void	cleanup2(t_mb *r, int phase)
 {
-	switch (phase)
+	r->type.free(r->type.context, r->z.i);
+	if (phase >= 3)
 	{
-		case 7:
-			resource->type.free(resource->type.context, resource->n.r);
-		case 6:
-			resource->type.free(resource->type.context, resource->t.i);
-		case 5:
-			resource->type.free(resource->type.context, resource->t.r);
-		case 4:
-			resource->type.free(resource->type.context, resource->z.i);
-		case 3:
-			resource->type.free(resource->type.context, resource->z.r);
-		case 2:
-			resource->type.free(resource->type.context, resource->y);
-		case 1:
-			resource->type.free(resource->type.context, resource->x);
-		case 0:
-			free(resource);
+		r->type.free(r->type.context, r->z.r);
+		if (phase >= 2)
+		{
+			r->type.free(r->type.context, r->y);
+			if (phase >= 1)
+			{
+				r->type.free(r->type.context, r->x);
+				if (phase >= 0)
+					free(r);
+			}
+		}
+	}
+}
+
+static t_err	cleanup1(t_mb *r, int phase)
+{
+	if (phase >= 7)
+	{
+		r->type.free(r->type.context, r->n.r);
+		if (phase >= 6)
+		{
+			r->type.free(r->type.context, r->t.i);
+			if (phase >= 5)
+			{
+				r->type.free(r->type.context, r->t.r);
+				if (phase >= 4)
+					cleanup2(r, phase);
+			}
+		}
 	}
 	return (true);
 }
@@ -53,21 +67,21 @@ t_err	mb_new(
 		return (true);
 	result->type = type;
 	if (type.clone(type.context, type.zero, &result->x))
-		return (cleanup(result, 0));
+		return (cleanup1(result, 0));
 	if (type.clone(type.context, type.zero, &result->y))
-		return (cleanup(result, 1));
+		return (cleanup1(result, 1));
 	if (type.clone(type.context, type.zero, &result->z.r))
-		return (cleanup(result, 2));
+		return (cleanup1(result, 2));
 	if (type.clone(type.context, type.zero, &result->z.i))
-		return (cleanup(result, 3));
+		return (cleanup1(result, 3));
 	if (type.clone(type.context, type.zero, &result->t.r))
-		return (cleanup(result, 4));
+		return (cleanup1(result, 4));
 	if (type.clone(type.context, type.zero, &result->t.i))
-		return (cleanup(result, 5));
+		return (cleanup1(result, 5));
 	if (type.clone(type.context, type.zero, &result->n.r))
-		return (cleanup(result, 6));
+		return (cleanup1(result, 6));
 	if (type.clone(type.context, type.zero, &result->n.i))
-		return (cleanup(result, 7));
+		return (cleanup1(result, 7));
 	result->exponent = exponent;
 	result->max_iteration_count = max_iteration_count;
 	*out = result;

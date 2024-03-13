@@ -6,7 +6,7 @@
 /*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:59:56 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/10 23:44:45 by jmaing           ###   ########.fr       */
+/*   Updated: 2024/03/14 00:09:22 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 
 #include "mb_core_internal.h"
 
-static void swap2(t_mb_real **a, t_mb_real **b, t_mb_real **c, t_mb_real **d)
+static void	swap2(t_mb_real **a, t_mb_real **b, t_mb_real **c, t_mb_real **d)
 {
-	t_mb_real *tmp;
+	t_mb_real	*tmp;
 
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
-    tmp = *c;
-    *c = *d;
-    *d = tmp;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+	tmp = *c;
+	*c = *d;
+	*d = tmp;
 }
 
 static t_err	complex_multiply(
@@ -50,15 +50,55 @@ static t_err	complex_multiply(
 	);
 }
 
-t_err	mb(
+static t_err	z_eq_z_pow_e(t_mb *s)
+{
+	const t_mb_real_type	t = s->type;
+	void *const				c = s->type.context;
+	size_t					e;
+
+	e = s->exponent;
+	swap2(&s->t.r, &s->z.r, &s->t.i, &s->z.i);
+	if (t.assign(c, &s->z.r, t.one) || t.assign(c, &s->z.i, t.zero))
+		return (true);
+	while (e)
+	{
+		if (e & 1)
+		{
+			if (complex_multiply(s, &s->n, s->z, s->t))
+				return (true);
+			swap2(&s->z.r, &s->n.r, &s->z.i, &s->n.i);
+		}
+		if (complex_multiply(s, &s->n, s->t, s->t))
+			return (true);
+		swap2(&s->t.r, &s->n.r, &s->t.i, &s->n.i);
+		e >>= 2;
+	}
+	return (false);
+}
+
+static t_err	z_eq_z_plus_c(
 	t_mb *s,
 	const t_mb_real *c_r,
-	const t_mb_real *c_i,
+	const t_mb_real *c_i
+)
+{
+	const t_mb_real_type	t = s->type;
+	void *const				c = s->type.context;
+
+	if (t.add(c, &s->n.i, s->z.i, c_i) || t.add(c, &s->n.r, s->z.r, c_r))
+		return (true);
+	swap2(&s->z.r, &s->n.r, &s->z.i, &s->n.i);
+	return (false);
+}
+
+t_err	mb(
+	t_mb *s,
+	const t_mb_real *real,
+	const t_mb_real *imaginary,
 	size_t *out
 )
 {
 	size_t					i;
-	size_t					j;
 	bool					b;
 	const t_mb_real_type	t = s->type;
 	void *const				c = s->type.context;
@@ -68,31 +108,18 @@ t_err	mb(
 	i = (size_t)-1;
 	while (++i < s->max_iteration_count)
 	{
-		j = s->exponent;
 		swap2(&s->t.r, &s->z.r, &s->t.i, &s->z.i);
-		if (t.assign(c, &s->z.r, t.one) || t.assign(c, &s->z.i, t.zero))
-			return (true);
-		while (j)
-		{
-			if (j & 1)
-			{
-				if (complex_multiply(s, &s->n, s->z, s->t))
-					return (true);
-				swap2(&s->z.r, &s->n.r, &s->z.i, &s->n.i);
-			}
-			if (complex_multiply(s, &s->n, s->t, s->t))
-				return (true);
-			swap2(&s->t.r, &s->n.r, &s->t.i, &s->n.i);
-			j >>= 2;
-		}
-		if (t.add(c, &s->n.i, s->z.i, c_i) || t.add(c, &s->n.r, s->z.r, c_r))
-			return (true);
-		swap2(&s->z.r, &s->n.r, &s->z.i, &s->n.i);
-		if (t.mul(c, &s->x, s->z.r, s->z.r) || t.mul(c, &s->y,s->z.i, s->z.i)
-			|| t.add(c, &s->n.r, s->x, s->y) || t.is_ge4(c, s->n.r, &b))
+		if (t.assign(c, &s->z.r, t.one)
+			|| t.assign(c, &s->z.i, t.zero)
+			|| z_eq_z_pow_e(s)
+			|| z_eq_z_plus_c(s, real, imaginary)
+			|| t.mul(c, &s->x, s->z.r, s->z.r)
+			|| t.mul(c, &s->y, s->z.i, s->z.i)
+			|| t.add(c, &s->n.r, s->x, s->y)
+			|| t.is_ge4(c, s->n.r, &b))
 			return (true);
 		if (b)
-			break;
+			break ;
 	}
 	*out = i;
 	return (false);
