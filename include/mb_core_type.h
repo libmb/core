@@ -21,23 +21,23 @@ typedef struct s_mb_real	t_mb_real;
 
 typedef void				(*t_mb_real_v_free)(
 								void *context,
-								t_mb_real *self);
+								const t_mb_real *self);
 
 typedef t_err				(*t_mb_real_v_clone)(
 								void *context,
-								t_mb_real *self,
+								const t_mb_real *self,
 								t_mb_real **out);
 
 typedef t_err				(*t_mb_real_v_assign)(
 								void *context,
 								t_mb_real **self,
-								t_mb_real *other);
+								const t_mb_real *other);
 
 typedef t_err				(*t_mb_real_v_binary)(
 								void *context,
 								t_mb_real **mut,
-								t_mb_real *lhs,
-								t_mb_real *rhs);
+								const t_mb_real *lhs,
+								const t_mb_real *rhs);
 
 typedef t_err				(*t_mb_real_v_negate)(
 								void *context,
@@ -45,7 +45,7 @@ typedef t_err				(*t_mb_real_v_negate)(
 
 typedef t_err				(*t_mb_real_v_check)(
 								void *context,
-								t_mb_real *self,
+								const t_mb_real *self,
 								bool *out);
 
 typedef struct s_mb_real_type
