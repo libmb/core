@@ -18,7 +18,7 @@ if [ "$CC" = "clang" ] || [ "$CC" = "clang" ]; then
   mkdir -p .cache
   echo "int main(void){}" > .cache/test.c
   CFLAGS="-Werror -pedantic -std=c99"
-  for str in all extra pedantic cast-qual conversion double-promotion duplicated-branches duplicated-cond float-equal format=2 format-signedness init-self logical-op missing-declarations missing-declarations missing-prototypes padded shadow strict-prototypes switch-default switch-enum undef unused-macros write-strings; do
+  for str in all extra pedantic cast-qual conversion double-promotion duplicated-branches duplicated-cond float-equal format=2 format-signedness init-self logical-op missing-declarations missing-prototypes padded shadow strict-prototypes switch-default switch-enum undef unused-macros write-strings; do
     "$CC" -W$str -Werror -o .cache/test .cache/test.c 1>&2 && CFLAGS="$CFLAGS -W$str" || :
   done
 fi

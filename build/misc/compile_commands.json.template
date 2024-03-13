@@ -28,7 +28,6 @@
       "-Winit-self",
       "-Wlogical-op",
       "-Wmissing-declarations",
-      "-Wmissing-declarations",
       "-Wmissing-prototypes",
       "-Wpadded",
       "-Wshadow",
