@@ -21,7 +21,7 @@ typedef struct s_mb_real	t_mb_real;
 
 typedef void				(*t_mb_real_v_free)(
 								void *context,
-								const t_mb_real *self);
+								t_mb_real *self);
 
 typedef t_err				(*t_mb_real_v_clone)(
 								void *context,
