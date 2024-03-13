@@ -6,13 +6,11 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:59:56 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/14 00:22:39 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/14 00:45:52 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mb_core.h"
-
-#include <stdlib.h>
 
 #include "mb_core_internal.h"
 
