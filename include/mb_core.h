@@ -23,7 +23,7 @@ t_err	mb_new(
 			size_t max_iteration_count,
 			t_mb **out);
 t_err	mb(
-			const t_mb *context,
+			t_mb *context,
 			const t_mb_real *real,
 			const t_mb_real *imaginary,
 			size_t *out);

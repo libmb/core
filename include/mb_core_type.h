@@ -55,9 +55,9 @@ typedef struct s_mb_real_type
 	t_mb_real_v_clone	clone;
 	t_mb_real_v_assign	assign;
 	t_mb_real_v_binary	add;
-	t_mb_real_v_binary	multiply;
+	t_mb_real_v_binary	mul;
 	t_mb_real_v_negate	negate;
-	t_mb_real_v_check	is_greater_than_or_equal_to_four;
+	t_mb_real_v_check	is_ge4;
 	const t_mb_real		*zero;
 	const t_mb_real		*one;
 }	t_mb_real_type;
