@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mb_core.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 23:36:03 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/11 23:50:20 by jmaing           ###   ########.fr       */
+/*   Created: 2024/03/08 23:36:03 by Juyeong Maing     #+#    #+#             */
+/*   Updated: 2024/03/14 00:22:39 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

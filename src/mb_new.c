@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mb_new.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 22:47:22 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/13 23:51:09 by jmaing           ###   ########.fr       */
+/*   Created: 2024/03/10 22:47:22 by Juyeong Maing     #+#    #+#             */
+/*   Updated: 2024/03/14 00:22:39 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
