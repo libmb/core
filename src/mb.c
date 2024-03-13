@@ -63,6 +63,8 @@ t_err	mb(
 	const t_mb_real_type	t = s->type;
 	void *const				c = s->type.context;
 
+	if (t.assign(c, &s->z.r, t.zero) || t.assign(c, &s->z.i, t.zero))
+		return (true);
 	i = (size_t)-1;
 	while (++i < s->max_iteration_count)
 	{
