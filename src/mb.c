@@ -69,7 +69,7 @@ static t_err	z_eq_z_pow_e(t_mb *s)
 		if (complex_multiply(s, &s->n, s->t, s->t))
 			return (true);
 		complex_swap(&s->t, &s->n);
-		e >>= 2;
+		e >>= 1;
 	}
 	return (false);
 }
