@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:47:22 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/14 00:22:39 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/04/08 02:20:21 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	cleanup2(t_mb *r, int phase)
 	}
 }
 
-static t_err	cleanup1(t_mb *r, int phase)
+static t_mb_err	cleanup1(t_mb *r, int phase)
 {
 	if (phase >= 7)
 	{
@@ -54,7 +54,7 @@ static t_err	cleanup1(t_mb *r, int phase)
 	return (true);
 }
 
-t_err	mb_new(
+t_mb_err	mb_new(
 	t_mb_real_type type,
 	size_t exponent,
 	size_t max_iteration_count,

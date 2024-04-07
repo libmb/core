@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:59:56 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/14 00:22:39 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/04/08 02:20:36 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	complex_swap(t_mb_complex *a, t_mb_complex *b)
 	b->i = tmp;
 }
 
-static t_err	complex_multiply(
+static t_mb_err	complex_multiply(
 	t_mb *context,
 	t_mb_complex *result,
 	t_mb_complex lhs,
@@ -48,7 +48,7 @@ static t_err	complex_multiply(
 	);
 }
 
-static t_err	z_eq_z_pow_e(t_mb *s)
+static t_mb_err	z_eq_z_pow_e(t_mb *s)
 {
 	const t_mb_real_type	t = s->type;
 	void *const				c = s->type.context;
@@ -74,7 +74,7 @@ static t_err	z_eq_z_pow_e(t_mb *s)
 	return (false);
 }
 
-static t_err	z_eq_z_plus_c(
+static t_mb_err	z_eq_z_plus_c(
 	t_mb *s,
 	const t_mb_real *c_r,
 	const t_mb_real *c_i
@@ -89,7 +89,7 @@ static t_err	z_eq_z_plus_c(
 	return (false);
 }
 
-t_err	mb(
+t_mb_err	mb(
 	t_mb *s,
 	const t_mb_real *real,
 	const t_mb_real *imaginary,
