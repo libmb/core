@@ -1,5 +1,7 @@
 /.cache
+/builddir
 /libmb_core.a
+/mb_core.lib
 /compile_commands.json
 /*.tmp
 /out
